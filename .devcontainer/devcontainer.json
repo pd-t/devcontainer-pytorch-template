@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"remoteUser": "user",
+	"runArgs": ["--env-file",".devcontainer/devcontainer.env","--gpus","all", "--shm-size=10.24gb"],
+	"postCreateCommand": "bash scripts/install-dev-tools.sh",
+	"mounts": [
+		// Re-use local SSH keys (useful if you use SSH keys for Git repo access or other SSH work)
+		"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
+		// Re-use local Git configuration
+		"source=${localEnv:HOME}/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"
+	],
+	"shutdownAction": "none",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"python.defaultInterpreterPath": "/workspaces/jupyter-huggingface-tapelegen/.venv"
+			},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			// Add python and linting extensions, jupyter and copilot
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"GitHub.copilot"
+			]
+		}
+	}
+}
