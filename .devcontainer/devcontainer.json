@@ -8,13 +8,13 @@
 	},
 	"mounts": [
 		// Re-use local SSH keys (useful if you use SSH keys for Git repo access or other SSH work)
-		"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
+		//"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
 		// Re-use local Git configuration
 		"source=${localEnv:HOME}/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"
 	],
 	"remoteUser": "user",
 	// Add GPU Support
-	"runArgs": ["--gpus","all", "--shm-size=10.24gb"],
+	"runArgs": ["--env-file",".devcontainer/devcontainer.env","--gpus","all", "--shm-size=10.24gb"],
 	"postCreateCommand": "bash scripts/install-dev-tools.sh",
 	// Run x86_64 images on Apple Silicon
 	//"runArgs": ["--platform", "linux/amd64"], 
