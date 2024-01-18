@@ -6,15 +6,24 @@
 		"dockerfile": "Dockerfile",
 		"context": ".."
 	},
+	"mounts": [
+		// Re-use local SSH keys (useful if you use SSH keys for Git repo access or other SSH work)
+		"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
+		// Re-use local Git configuration
+		"source=${localEnv:HOME}/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"
+	],
 	"remoteUser": "user",
-	"runArgs": ["--gpus","all"],
+	// Add GPU Support
+	// "runArgs": ["--gpus","all"],
+	// Run x86_64 images on Apple Silicon
+	"runArgs": ["--platform", "linux/amd64"], 
 	"postCreateCommand": "bash scripts/install-dev-tools.sh",
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
 			"settings": { 
-				"python.defaultInterpreterPath": "/workspaces/jupyter-huggingface-tapelegen/.venv"
+				"python.defaultInterpreterPath": "/workspaces/devcontainer-pytorch-template/.venv"
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
