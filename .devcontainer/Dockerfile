@@ -16,6 +16,17 @@ RUN groupadd --gid $USER_GID $USER_NAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    vim \
+    nano \
+    htop \
+    tmux \
+    zsh \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/python3 /usr/bin/python
 ENV PATH="$PATH:/home/user/.local/bin"
 SHELL ["/bin/bash", "-c"]
