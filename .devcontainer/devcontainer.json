@@ -14,10 +14,10 @@
 	],
 	"remoteUser": "user",
 	// Add GPU Support
-	// "runArgs": ["--gpus","all"],
+	"runArgs": ["--gpus","all"],
 	// Run x86_64 images on Apple Silicon
-	"runArgs": ["--platform", "linux/amd64"], 
-	"postCreateCommand": "bash scripts/install-dev-tools.sh",
+	//"runArgs": ["--platform", "linux/amd64"], 
+	//"postCreateCommand": "bash scripts/install-dev-tools.sh",
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {

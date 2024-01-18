@@ -1,9 +1,4 @@
-FROM nvidia/cuda:11.7.1-base-ubuntu22.04 as base
-RUN apt update && apt install -y --no-install-recommends git ssh python3 python3-pip screen
-RUN ln -s /usr/bin/python3 /usr/bin/python
-ENV PATH="$PATH:/home/user/.local/bin"
-
-FROM base as devcontainer
+FROM thomasfraunholz/docker-cuda-poetry:1.6.1-117
 ARG USER_NAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -21,6 +16,8 @@ RUN groupadd --gid $USER_GID $USER_NAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
+RUN ln -s /usr/bin/python3 /usr/bin/python
+ENV PATH="$PATH:/home/user/.local/bin"
 SHELL ["/bin/bash", "-c"]
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USER_NAME
