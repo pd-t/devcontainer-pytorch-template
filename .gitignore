@@ -1,2 +1,3 @@
 .cache
 .devcontainer/devcontainer.env
+.venv
