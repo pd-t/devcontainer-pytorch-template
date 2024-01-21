@@ -26,7 +26,7 @@
 	// - Add GPU Support to the container, this is not optional when you want to use GPU. Th
 	//   shm-size is needed for the GPU support, see `setting the shared memory flag` in
 	//   https://docs.nvidia.com/deeplearning/frameworks/user-guide/index.html#docker-containers
-	//   "runArgs": ["--gpus","all", "--shm-size=10.24gb"],
+	//   "runArgs": ["--gpus","all", "--shm-size=1gb"],
 
 	// Prevent the Devcontainer from shutdown when connection is lost. This is useful when
 	// you want to keep the container running after you close the VS Code window.
