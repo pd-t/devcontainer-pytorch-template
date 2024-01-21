@@ -1,5 +1,3 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
 	"name": "Python 3",
 	// Use Dockerfile with CUDA for GPU support together with additoinal Devcontainer changes.
@@ -8,36 +6,12 @@
 		"context": ".."
 	},
 	"remoteUser": "user",
-
-	"mounts": [
-		// Re-use local SSH keys (if want to you use SSH keys, e.g. for Git repo access or 
-		// other SSH things). Please, don't re-use existing keys for security reasons.
-		//"source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
-		
-		// Re-use local Git configuration, should be copied to the container by default anyway.
-		//"source=${localEnv:HOME}/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"
-	],
-	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
-	// The following lines need to be merged into the rundArgs line above to add the features:
-	// - Use devcontainer envorinment file, see READEME.md for more informations.
-    //   "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
-	// - Run x86_64 images on Apple Silicon, this is not optional when you use Apple Silicon.
-	//   "runArgs": ["--platform", "linux/amd64"], 
-	// - Add GPU Support to the container, this is not optional when you want to use GPU. Th
-	//   shm-size is needed for the GPU support, see `setting the shared memory flag` in
+	// For shared memory flag, see
 	//   https://docs.nvidia.com/deeplearning/frameworks/user-guide/index.html#docker-containers
-	//   "runArgs": ["--gpus","all", "--shm-size=1gb"],
-
-	// Prevent the Devcontainer from shutdown when connection is lost. This is useful when
-	// you want to keep the container running after you close the VS Code window.
-	// In combination with screen or tmux, you can do long run computations, e.g. training
-	// a neural network.
+	"runArgs": ["--env-file",".devcontainer/devcontainer.env","--gpus","all", "--shm-size=1gb"],
+	
 	//"shutdownAction": "none",
 
-	// Call the installation script to create the development environment. Keep this as
-	// post create command. If you do this in the Dockerfile, you need to rebuild and loose
-	// flexibility. In addition to this, the devcontainer needs longer to start, when the 
-	// installation is done before the user is created due to file permissions reasons.
 	"postCreateCommand": "bash scripts/install-dev-tools.sh",
 	
 	"customizations": {
